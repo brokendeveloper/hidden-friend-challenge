@@ -32,3 +32,39 @@ function showNamesOnScreen() {
     });
 }
 
+
+function giveawayHiddenFriend() {
+    if(names.length < 2){
+        alert('Is necessary 2 participants at least to the giveaway');
+        return;
+    }
+
+
+    let namesToGiveaway = [...names];
+    let results = {};
+
+    let resultDiv = document.getElementById('resultado');
+    resultDiv.innerHTML = '';
+
+    for(let i = 0; i< names.length; i++){
+        const sorterName = names[i];
+
+        let freeNames = namesToSort.filter(name => name !== sorterName);
+
+        if(freeNames.length === 0){
+            giveawayHiddenFriend();
+            return;
+        }
+
+        const drawnIndex = Math.floor(Math.random() * freeNames.length);
+        const drawnName = freeNames[drawnIndex];
+
+        results[sorterName] = drawnName;
+
+        const indexToRemove = namesToSort.indexOf(drawnName);
+        namesToSort.splice(indexToRemove);
+    
+    }
+    
+    showResultsOnScreen(results);
+}
