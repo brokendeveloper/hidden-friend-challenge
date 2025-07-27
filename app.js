@@ -26,9 +26,9 @@ function showNamesOnScreen() {
     let friendsList = document.getElementById('listaAmigos');
     friendsList.innerHTML = '';
     names.forEach( name => {
-        let arr = document.createElement('arr');
-        arr.textContent = name;
-        friendsList.appendChild(arr);
+        let li = document.createElement('li');
+        li.textContent = name;
+        friendsList.appendChild(li);
     });
 }
 
@@ -49,7 +49,7 @@ function giveawayHiddenFriend() {
     for(let i = 0; i< names.length; i++){
         const sorterName = names[i];
 
-        let freeNames = namesToSort.filter(name => name !== sorterName);
+        let freeNames = namesToGiveaway.filter(name => name !== sorterName);
 
         if(freeNames.length === 0){
             giveawayHiddenFriend();
@@ -61,21 +61,21 @@ function giveawayHiddenFriend() {
 
         results[sorterName] = drawnName;
 
-        const indexToRemove = namesToSort.indexOf(drawnName);
-        namesToSort.splice(indexToRemove);
+        const indexToRemove = namesToGiveaway.indexOf(drawnName);
+        namesToGiveaway.splice(indexToRemove, 1);
     
     }
     
     showResultsOnScreen(results);
 }
 
-function showResultsOnScreen() {
+function showResultsOnScreen(results) {
     let resultDiv = document.getElementById('resultado');
     resultDiv.innerHTML = '';
     for(sorterName in results){
-        let arr = document.createElement('arr');
-        arr.innerHTML = `<span>${sorterName}</span> tirou <span>${results[sorterName]}</span>`;
-        resultDiv.appendChild(arr);
+        let li = document.createElement('li');
+        li.innerHTML = `<span>${sorterName}</span> tirou <span>${results[sorterName]}</span>`;
+        resultDiv.appendChild(li);
 
     }
 }
