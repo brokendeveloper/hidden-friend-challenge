@@ -21,3 +21,14 @@ function addNames() {
     inputName.value = '';
 
 }
+
+function showNamesOnScreen() {
+    let friendsList = document.getElementById('listaAmigos');
+    friendsList.innerHTML = '';
+    names.forEach( name => {
+        let arr = document.createElement('arr');
+        arr.textContent = name;
+        friendsList.appendChild(arr);
+    });
+}
+
