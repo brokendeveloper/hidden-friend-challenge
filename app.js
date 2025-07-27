@@ -68,3 +68,14 @@ function giveawayHiddenFriend() {
     
     showResultsOnScreen(results);
 }
+
+function showResultsOnScreen() {
+    let resultDiv = document.getElementById('resultado');
+    resultDiv.innerHTML = '';
+    for(sorterName in results){
+        let arr = document.createElement('arr');
+        arr.innerHTML = `<span>${sorterName}</span> tirou <span>${results[sorterName]}</span>`;
+        resultDiv.appendChild(arr);
+
+    }
+}
